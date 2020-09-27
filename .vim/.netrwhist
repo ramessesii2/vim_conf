@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/ramessesII/College/OS'
+let g:netrw_dirhist_0='/'
+let g:netrw_dirhist_9='/home'
+let g:netrw_dirhist_8='/home/ramessesII'
+let g:netrw_dirhist_7='/home/ramessesII/Downloads'
+let g:netrw_dirhist_6='/home/ramessesII'
+let g:netrw_dirhist_5='/home/ramessesII/Downloads'
+let g:netrw_dirhist_4='/home/ramessesII'
+let g:netrw_dirhist_3='/home/ramessesII/ClgAssignts/java/assign1_theory'
+let g:netrw_dirhist_2='/home/ramessesII/ClgAssignts/java/Assignment1'

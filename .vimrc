@@ -87,6 +87,7 @@ nnoremap <Leader>ps :Rg<SPACE>
 nnoremap <silent> <Leader>+ :vertical resize +5<CR>
 nnoremap <silent> <Leader>- :vertical resize -5<CR>
 nnoremap <leader>ov :exe ':silent !code-insiders %'<CR>:redraw!<CR>
+nnoremap <leader>od :exe ':silent !xdg-open %'<CR>:redraw!<CR>
 "Clear highlights on hitting ESC twice
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 "remapping space to leader+space  in normal mode
@@ -97,10 +98,10 @@ nnoremap ,v :vsplit<enter>
 nnoremap ,r <C-w>r 
 nnoremap ,x <C-w>c 
 
-"Python autoexecution in vim"
 " Bind F5 to save file if modified and execute python script in a buffer.
 nnoremap <silent> <F5> :call SaveAndExecutePython()<CR>
 vnoremap <silent> <F5> :<C-u>call SaveAndExecutePython()<CR>
+
 function! SaveAndExecutePython()
     " SOURCE [reusable window]: https://github.com/fatih/vim-go/blob/master/autoload/go/ui.vim
 
@@ -141,12 +142,20 @@ function! SaveAndExecutePython()
     %delete _
 
     " add the console output
-"    silent execute ".!python " . shellescape(s:current_buffer_file_path, 1)
+    silent execute ".!python " . shellescape(s:current_buffer_file_path, 1)
 
+    " resize window to content length
+    " Note: This is annoying because if you print a lot of lines then your code buffer is forced to a height of one line every time you run this function.
+    "       However without this line the buffer starts off as a default size and if you resize the buffer then it keeps that custom size after repeated runs of this function.
+    "       But if you close the output buffer then it returns to using the default size when its recreated
+    "execute 'resize' . line('$')
+
+    " make the buffer non modifiable
     setlocal readonly
+
     setlocal nomodifiable
 endfunction
-"auto reloading files for newest changes"
+
 set autoread
 if ! exists("g:CheckUpdateStarted")
     let g:CheckUpdateStarted=1
@@ -158,4 +167,32 @@ function! CheckUpdate(timer)
 endfunction
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
-"set runtimepath^=~/.vim/bundle/start/surround
+
+"nerd treee settings "
+"map <C-n> :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+call NERDTreeHighlightFile('py', 'green', 'none', 'green', '#151515')
+call NERDTreeHighlightFile('c', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('txt', 'blue', 'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
+call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
+call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')

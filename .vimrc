@@ -61,8 +61,8 @@ call plug#end()
 
 syntax enable
 set background=dark
-colorscheme solarized
-"colorscheme gruvbox 
+"colorscheme solarized
+colorscheme gruvbox 
 "colorscheme dracula
 if executable('rg')
     let g:rg_derive_root='true'
@@ -84,23 +84,32 @@ nnoremap <leader>l :wincmd l<CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
-nnoremap <silent> <Leader>+ :vertical resize +5<CR>
-nnoremap <silent> <Leader>- :vertical resize -5<CR>
+
+nnoremap <silent> <Leader>> :vertical resize +5<CR>
+nnoremap <silent> <Leader>< :vertical resize -5<CR>
+nnoremap <silent> <Leader>- :resize -5<CR>
+nnoremap <silent> <Leader>+ :resize +5<CR>
+nnoremap <silent> <Leader>= :resize<CR>
+
 nnoremap <leader>ov :exe ':silent !code-insiders %'<CR>:redraw!<CR>
 nnoremap <leader>od :exe ':silent !xdg-open %'<CR>:redraw!<CR>
 "Clear highlights on hitting ESC twice
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
 "remapping space to leader+space  in normal mode
-nnoremap <silent> <leader><Space> i<Space><Esc>
+nnoremap <silent> <Leader><Space> i<Space><Esc>
 
-noremap ,s :split<enter>
-nnoremap ,v :vsplit<enter>
+noremap ,v :split<enter>
+nnoremap ,s :vsplit<enter>
 nnoremap ,r <C-w>r 
 nnoremap ,x <C-w>c 
 
+"run shell scripts
+autocmd FileType sh nnoremap <leader>rs :exec '!sh' shellescape(@%, 1)<cr>
+
 " Bind F5 to save file if modified and execute python script in a buffer.
-nnoremap <silent> <F5> :call SaveAndExecutePython()<CR>
-vnoremap <silent> <F5> :<C-u>call SaveAndExecutePython()<CR>
+autocmd FileType python nnoremap <leader>rp :call SaveAndExecutePython()<CR>
+autocmd FileType python nnoremap <leader>arp :exec '!python' shellescape(@%, 1)<cr>
+autocmd FileType python vnoremap <leader>rp :call SaveAndExecutePython()<CR>
 
 function! SaveAndExecutePython()
     " SOURCE [reusable window]: https://github.com/fatih/vim-go/blob/master/autoload/go/ui.vim
@@ -112,7 +121,7 @@ function! SaveAndExecutePython()
     let s:current_buffer_file_path = expand("%")
 
     let s:output_buffer_name = "Python"
-    let s:output_buffer_filetype = "output"
+    let s:         output_buffer_filetype = "output"
 
     " reuse existing buffer window if it exists otherwise create a new one
     if !exists("s:buf_nr") || !bufexists(s:buf_nr)
@@ -178,21 +187,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
+"run C file
+"let mycommand = ':!gcc % -o %< && echo "%<" && [ $(pwd) == "." ] && %< || ./%< '
+"nnoremap <silent> <Leader>cc :!clear && gcc % <CR>
+"nnoremap <Leader>rc :!clear && gcc % -o %< && ./%< && read <CR>
+autocmd FileType c
+   \ set makeprg=gcc\ -Wall\ %\ -o\ out |
+   \ nnoremap <Leader>rc :w!<cr>:make<cr>:!./out
 
-call NERDTreeHighlightFile('py', 'green', 'none', 'green', '#151515')
-call NERDTreeHighlightFile('c', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('txt', 'blue', 'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('json', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('html', 'yellow', 'none', 'yellow', '#151515')
-call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('css', 'cyan', 'none', 'cyan', '#151515')
-call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#151515')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#151515')
+"templated settings
+source ~/.vim/templates/py_config/py.vim
+

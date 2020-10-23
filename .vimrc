@@ -27,9 +27,14 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set nu
+set ignorecase
 set smartcase
 set noswapfile
+
+"undo file conf
 set undofile
+set undodir=~/.vim/vimundo
+
 set incsearch
 set relativenumber
 "
@@ -59,9 +64,13 @@ Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
 Plug 'mbbill/undotree'
+Plug 'vim-python/python-syntax'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
+let g:python_highlight_all = 0
+set nocompatible
 syntax enable
 set background=dark
 colorscheme onedark
@@ -86,11 +95,13 @@ nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
+
 nnoremap <leader>u :UndotreeShow<CR>
-nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <Leader>ps :Rg<SPACE>
 
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 nnoremap <silent> <Leader>> :vertical resize +5<CR>
+
 nnoremap <silent> <Leader>< :vertical resize -5<CR>
 nnoremap <silent> <Leader>- :resize -5<CR>
 nnoremap <silent> <Leader>+ :resize +5<CR>
@@ -109,6 +120,15 @@ nnoremap ,r <C-w>r
 nnoremap ,x <C-w>c 
 nnoremap ,o <C-w>o
 
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>9 :tablast<cr>
+noremap <leader>0 :tabfirst<cr>
 "run shell scripts
 autocmd FileType sh nnoremap <leader>rs :exec '!sh' shellescape(@%, 1)<cr>
 
@@ -125,15 +145,16 @@ endfunction
 au CursorHold,CursorHoldI * checktime
 au FocusGained,BufEnter * :checktime
 
-"nerd treee settings "
-"map <C-n> :NERDTreeToggle<CR>
-nnoremap <Leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+""Deleted nerd tree
+""nerd treee settings "
+""map <C-n> :NERDTreeToggle<CR>
+"nnoremap <Leader>n :NERDTreeToggle<CR>
+"nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
+"let NERDTreeMinimalUI = 1
+"let NERDTreeDirArrows = 1
 
 "run C file
 "let mycommand = ':!gcc % -o %< && echo "%<" && [ $(pwd) == "." ] && %< || ./%< '
@@ -150,3 +171,33 @@ source ~/.vim/templates/py_config/py.vim
 let g:ale_linters = {'pthon':['flake8', 'pydocstyle', 'bandit', 'mypy']}
 let g:ale_fixers = {'*': [], 'python': ['black', 'isort']}
 let g:ale_fix_on_save = 1
+
+au BufLeave ~/.vimrc :source ~/.vimrc
+"gvim specifics
+if has('gui_running')
+    set belloff=all
+    " cd PyPrograms/CP/
+    set guioptions-=T  " no toolbar
+    set guioptions-=m  " no menubar
+    colorscheme onedark
+    if has('gui_win32')
+    set guifont=DejaVu_Sans_Mono:h4:cANSI
+    else
+        set guifont=Source\ Code\ Pro\ Italic\ 16
+        " set guifont=DejaVu\ Sans\ Mono\ 16
+    endif
+endif
+if has('title') && (has('gui_running') || &title)
+    set titlestring=
+    set titlestring+=%f
+    set titlestring+=%h%m%r%w
+    set titlestring+=\ -\ %{v:progname}
+    set titlestring+=\ -\ %{substitute(getcwd(),\ $HOME,\ '~',\ '')}
+endif
+set clipboard=unnamedplus
+" When editing a file, always jump to the last cursor position
+autocmd BufReadPost *
+\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+\   exe "normal g'\"" |
+\ endif
+

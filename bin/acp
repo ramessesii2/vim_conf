@@ -1,0 +1,6 @@
+read -p "Directory name: cp_" b
+mkdir "cp_$b" 
+cd $b
+# touch "1.py" "2.py" "3.py" "4.py" "5.py" "6.py" 
+gvim -p "1.py" "2.py" "3.py" "4.py" "5.py" "6.py" 
+

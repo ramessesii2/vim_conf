@@ -108,7 +108,17 @@ alias c="clear"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
+alias gch="git checkout"
 alias gp="git push"
+alias gb="git branch"
+alias fim="find . -maxdepth 1 -iname"
+alias gv='gvim'
+export EDITOR="gvim"
+export VISUAL="$EDITOR"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 eval $(thefuck --alias)
+
+
+# to run created commands
+PATH="$PATH:$HOME/bin"

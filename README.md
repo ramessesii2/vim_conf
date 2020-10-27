@@ -1,6 +1,6 @@
 # vim_conf
 
-### GET STARTED
+#### GET STARTED
 
 ###### CLONE the repo. 
 
@@ -12,7 +12,7 @@
 
 --My leader is mapped to space(see *.vimrc* file)--
 
-###### leader = "space"
+#### leader = "space"
 
 ###### movement between splits
 * leader + h = switch to tab to the left
@@ -27,7 +27,7 @@
 * leader + + = : resize +5
 * leader + = = : resize
 
-# opening files in other editors
+###### opening files in other editors
 * leader + ov = open in vscode
 * leader + od = open in document viewer
 

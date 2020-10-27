@@ -53,3 +53,12 @@
 * leader + 6 = 6th tab
 * leader + 9 = last tab
 * leader + 0 = first tab
+
+##### PYTHON Specifics (look into *~/.vim/templates/py_config* for more details)
+* leader + dtc = split into 3, 2 other for input and output files.
+
+In **insert mode**
+* ;init - initial template toggle
+* ;bis - binary search template
+* ;sys - import system
+* ;; - move across placeholders ("%%%")

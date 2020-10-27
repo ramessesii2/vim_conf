@@ -1,4 +1,4 @@
-# vim_conf
+# vim_config(specifically for Python envs, can be extended to all languages and frameworks)
 
 #### GET STARTED
 

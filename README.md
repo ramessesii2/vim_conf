@@ -10,6 +10,8 @@
 
 ##### Here is a complete list of mappings(in progress)-
 
+(for a complete vim built-in command list, visit - *https://github.com/gibbok/vim-cheat-sheet*)
+
 --My leader is mapped to space(see *.vimrc* file)--
 
 #### leader = "space"

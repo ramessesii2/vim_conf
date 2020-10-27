@@ -1,12 +1,15 @@
 # vim_config(specifically for Python envs, can be extended to all languages and frameworks)
 
 #### GET STARTED
+![A python file](/ss/python_ss.png)
 
 ###### CLONE the repo. 
 
 1. Put *.vimrc* file and *.vim/* folder into home directory.
 1. open .vimrc and press : to go into command mode, type **PlugInstall**.
 1. (OPTIONAL) Once installed, download *flake8* and *black* for better linting and syntax highlighting and move the *flake8* file in *~/.config*.
+
+![".vimrc file"](/ss/vimrc_ss.png)
 
 ##### Here is a complete list of mappings(in progress)-
 
@@ -64,3 +67,4 @@
 * ;bis - binary search template
 * ;sys - import system
 * ;; - move across placeholders ("%%%")
+* ;for - for loop 

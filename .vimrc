@@ -30,6 +30,41 @@ set nu
 set ignorecase
 set smartcase
 set noswapfile
+" set spell
+" set viminfo='100,<500,s10,h,!
+" autocmd VimEnter * SessionOpenLast
+
+function! MakeSession(overwrite)
+  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+  if (filewritable(b:sessiondir) != 2)
+    exe 'silent !mkdir -p ' b:sessiondir
+    redraw!
+  endif
+  let b:filename = b:sessiondir . '/session.vim'
+  if a:overwrite == 0 && !empty(glob(b:filename))
+    return
+  endif
+  exe "mksession! " . b:filename
+endfunction
+
+function! LoadSession()
+  let b:sessiondir = $HOME . "/.vim/sessions" . getcwd()
+  let b:sessionfile = b:sessiondir . "/session.vim"
+  if (filereadable(b:sessionfile))
+    exe 'source ' b:sessionfile
+  else
+    echo "No session loaded."
+  endif
+endfunction
+
+" Adding automatons for when entering or leaving Vim
+if(argc() == 0)
+  au VimEnter * nested :call LoadSession()
+  au VimLeave * :call MakeSession(1)
+else
+  au VimLeave * :call MakeSession(0)
+endif
+
 
 "undo file conf
 set undofile
@@ -73,7 +108,7 @@ let g:python_highlight_all = 0
 set nocompatible
 syntax enable
 set background=dark
-colorscheme onedark
+colorscheme dracula
 "colorscheme iceberg 
 "colorscheme solarized
 "colorscheme gruvbox 
@@ -179,7 +214,7 @@ if has('gui_running')
     " cd PyPrograms/CP/
     set guioptions-=T  " no toolbar
     set guioptions-=m  " no menubar
-    colorscheme onedark
+    colorscheme dracula
     if has('gui_win32')
     set guifont=DejaVu_Sans_Mono:h4:cANSI
     else

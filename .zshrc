@@ -113,6 +113,7 @@ alias gp="git push"
 alias gb="git branch"
 alias fim="find . -maxdepth 1 -iname"
 alias gv='gvim'
+alias lst="exa -T"
 export EDITOR="gvim"
 export VISUAL="$EDITOR"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

@@ -104,16 +104,23 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v="vim"
-alias c="clear"
+alias vg='gvim'
+
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit"
 alias gch="git checkout"
 alias gp="git push"
 alias gb="git branch"
+
+alias c="clear"
 alias fim="find . -maxdepth 1 -iname"
-alias gv='gvim'
 alias lst="exa -T"
+alias lslm="ls -ltc | head -n"
+alias lsla="ls -ltu | head -n"
+
+alias soact="source ~/django_proj/.venv/bin/activate"
+
 export EDITOR="gvim"
 export VISUAL="$EDITOR"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

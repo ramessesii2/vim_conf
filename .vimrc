@@ -97,6 +97,7 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
+Plug 'ycm-core/YouCompleteMe'
 Plug 'lyuts/vim-rtags'
 Plug 'mbbill/undotree'
 Plug 'vim-python/python-syntax'
@@ -154,6 +155,7 @@ nnoremap ,s :vsplit<enter>
 nnoremap ,r <C-w>r 
 nnoremap ,x <C-w>c 
 nnoremap ,o <C-w>o
+noremap ,t :tabnew<enter>
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -164,6 +166,9 @@ noremap <leader>5 5gt
 noremap <leader>6 6gt
 noremap <leader>9 :tablast<cr>
 noremap <leader>0 :tabfirst<cr>
+
+nnoremap <silent> <Leader>sov :source ~/.vimrc<CR>
+
 "run shell scripts
 autocmd FileType sh nnoremap <leader>rs :exec '!sh' shellescape(@%, 1)<cr>
 
@@ -199,8 +204,12 @@ autocmd FileType c
    \ set makeprg=gcc\ -Wall\ %\ -o\ out |
    \ nnoremap <Leader>rc :w!<cr>:make<cr>:!./out
 
+autocmd FileType cpp
+   \ nnoremap <Leader>rc :w <CR> :!g++ % && ./a.out <CR>
+
 "templated settings
 source ~/.vim/templates/py_config/py.vim
+source ~/.vim/templates/cpp_config/cp.vim
 
 "ale settings for pthon
 let g:ale_linters = {'pthon':['flake8', 'pydocstyle', 'bandit', 'mypy']}
@@ -236,3 +245,5 @@ autocmd BufReadPost *
 \   exe "normal g'\"" |
 \ endif
 
+"youcompleteme config
+let g:ycm_autoclose_preview_window_after_insertion = 1

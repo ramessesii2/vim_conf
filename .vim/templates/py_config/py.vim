@@ -68,4 +68,4 @@ function! SaveAndExecutePython()
 endfunction
 
 "specific configuratin of splits for competitive programming
-nnoremap <leader>dtc :vsplit<bar> :wincmd l<bar> :vertical resize -38<bar> :e out.txt<bar> :split<bar> :resize -5<bar> :wincmd j<bar> :e in.txt<bar> :wincmd h<CR>    
+nnoremap <leader>dtc :vsplit<bar> :wincmd l<bar> :vertical resize -38<bar> :e in.txt<bar> :split<bar> :wincmd j<bar> :e out.txt<bar> :wincmd h<CR>    

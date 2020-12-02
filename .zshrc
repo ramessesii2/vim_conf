@@ -120,6 +120,9 @@ alias lslm="ls -ltc | head -n"
 alias lsla="ls -ltu | head -n"
 
 alias soact="source ~/django_proj/.venv/bin/activate"
+alias py="python"
+alias g="g++"
+alias doc="xdg-open"
 
 export EDITOR="gvim"
 export VISUAL="$EDITOR"

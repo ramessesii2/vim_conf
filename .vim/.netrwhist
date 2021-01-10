@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =5
+let g:netrw_dirhist_5='/home/ramessesII/Programs/dp_problems'
+let g:netrw_dirhist_4='/home/ramessesII/Programs/segment_tree'
 let g:netrw_dirhist_3='/home/ramessesII/Programs/CodeForces/EduRound99'
 let g:netrw_dirhist_2='/home/ramessesII/Programs/segment_tree'
 let g:netrw_dirhist_1='/home/ramessesII/.vim/templates/py_config'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_9='/home/ramessesII/ClgAssignts/c_graphic/__pycache__'
 let g:netrw_dirhist_8='/home/ramessesII/PYTHON_PROJRCTS/knights/__pycache__'
 let g:netrw_dirhist_7='/home/ramessesII/.vim/templates/py_config'
 let g:netrw_dirhist_6='/home/ramessesII/.vim/templates'
-let g:netrw_dirhist_5='/home/ramessesII/django_proj/src/practice/practice'
-let g:netrw_dirhist_4='/home/ramessesII/django_proj/src/first'

@@ -1,1 +1,6 @@
 *.un~
+.vim/plugged
+.vim/autoload
+.vim/pack
+  
+

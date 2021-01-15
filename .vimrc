@@ -1,6 +1,11 @@
 set wrap linebreak nolist
 set encoding=utf-8
 autocmd InsertLeave * write
+augroup remember_folds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent! loadview
+augroup END
 
 syntax on
 set textwidth=0
@@ -92,6 +97,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'dense-analysis/ale'
 Plug 'altercation/vim-colors-solarized'
+Plug 'puremourning/vimspector'  
 Plug 'morhetz/gruvbox'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -102,6 +108,7 @@ Plug 'lyuts/vim-rtags'
 Plug 'mbbill/undotree'
 Plug 'vim-python/python-syntax'
 Plug 'sheerun/vim-polyglot'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -156,6 +163,10 @@ nnoremap ,r <C-w>r
 nnoremap ,x <C-w>c 
 nnoremap ,o <C-w>o
 noremap ,t :tabnew<enter>
+noremap ,X :tabclose<enter>
+noremap ,Q :qa<enter>
+noremap ,q :q<enter>
+noremap <C-A> ggVG
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -223,11 +234,11 @@ if has('gui_running')
     " cd PyPrograms/CP/
     set guioptions-=T  " no toolbar
     set guioptions-=m  " no menubar
-    colorscheme dracula
+    colorscheme default
     if has('gui_win32')
     set guifont=DejaVu_Sans_Mono:h4:cANSI
     else
-        set guifont=Source\ Code\ Pro\ Italic\ 16
+        set guifont=Source\ Code\ Pro\ Italic\ 15
         " set guifont=DejaVu\ Sans\ Mono\ 16
     endif
 endif
@@ -247,3 +258,19 @@ autocmd BufReadPost *
 
 "youcompleteme config
 let g:ycm_autoclose_preview_window_after_insertion = 1
+
+"vimspector config
+let g:vimspector_enable_mappings = 'HUMAN'
+nmap <leader>dd :call vimspector#Launch()<CR>
+nmap <leader>dx :VimspectorReset<CR>
+nmap <leader>de :VimspectorEval
+nmap <leader>dw :VimspectorWatch
+nmap <leader>do :VimspectorShowOutput
+
+" "
+" inoremap { {<CR>}<Esc>ko
+" inoremap (  ()<Left>
+" inoremap [  []<Left>
+" inoremap "  ""<Left>
+" inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+" inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"

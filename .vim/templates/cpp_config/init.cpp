@@ -1,33 +1,5 @@
 //Template
-#include <iostream>
 #include <bits/stdc++.h>
-#include <vector>
-#include <string>
-#include <algorithm>
-#include <sstream>
-#include <queue>
-#include <array>
-#include <deque>
-#include <bitset>
-#include <iterator>
-#include <list>
-#include <stack>
-#include <map>
-#include <set>
-#include <functional>
-#include <numeric>
-#include <utility>
-#include <limits>
-#include <time.h>
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <assert.h>
-#include <random>
-#include <cassert>
-#include <chrono>
-#include <cmath>
 using namespace std;
 
 #define ll              long long int
@@ -54,15 +26,21 @@ using namespace std;
 
 #define print(dp, n); \
     loop(i, 0, n){cout << dp[i] << " ";}cout << endl; 
-#define print2(dp, n, m); \
-    loop(i, 0, n){loop(j, 0, m){cout << dp[i][j] << " ";}cout << endl;} 
+#define print2(dp, a, n, b, m); \
+    loop(i, a, n){loop(j, b, m){cout << dp[i][j] << " ";}cout << endl;} 
 #define countetbits(i)\
     __builtin_popcount(i)
 
-typedef vector< long long int > vi;
+typedef vector< long long int > vl;
+typedef vector< int > vi;
 typedef vector< string > vs;
+
 typedef vector< vi > vvi;
-typedef pair< ll,ll > pii;
+typedef vector< vl > vvl;
+
+typedef pair< ll,ll > pll;
+typedef pair< int, int> pii;
+
 template <class A, class B>
 auto findMin(A a, B b) -> decltype(a < b ? a : b)
 {
@@ -81,17 +59,6 @@ void file_i_o(){
 #endif
 }
             
-/* bool compare(int a, int b){ */
-/*     return a>b; */
-/* } */
-
-/* bool sortbysec(const pair<int,int> &a, */ 
-/*               const pair<int,int> &b) */ 
-/* { */ 
-/*     return (a.second < b.second); */ 
-/* } */ 
-  
-
 void run_case(){
     %%%
 }
@@ -99,15 +66,15 @@ void run_case(){
 int main(){
     clock_t begin = clock();
     file_i_o();
-
-    int tests;
-    cin >> tests;
+    int tests = 1;
+    /* int tests; */
+    /* cin >> tests; */
 
     while(tests-- > 0)
         run_case();
 
     #ifndef ONLINE_JUDGE
-        clock_t end = clock();
+    clock_t end = clock();
     cout << "\n\nExecuted In: " << double(end - begin) /CLOCKS_PER_SEC << " seconds" << endl;
     #endif
     return 0;

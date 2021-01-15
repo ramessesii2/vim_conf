@@ -1,3 +1,43 @@
+#include <vector>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <sstream>
+#include <queue>
+#include <array>
+#include <deque>
+#include <bitset>
+#include <iterator>
+#include <list>
+#include <stack>
+#include <map>
+#include <set>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <limits>
+#include <time.h>
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <random>
+#include <cassert>
+#include <chrono>
+#include <cmath>
+/* bool compare(int a, int b){ */
+/*     return a>b; */
+/* } */
+
+/* bool sortbysec(const pair<int,int> &a, */ 
+/*               const pair<int,int> &b) */ 
+/* { */ 
+/*     return (a.second < b.second); */ 
+/* } */ 
+  
+
+
 /* int binarySearch (const int A[], int length, int val) { */
 
 /*     int low, mid, high; */

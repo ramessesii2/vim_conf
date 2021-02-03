@@ -1,9 +1,9 @@
 "read this template into every file with .py extension
-:autocmd BufNewFile *.py 0r ~/.vim/templates/py_config/init.py
+:autocmd BufNewFile *.py 0r ~/Programs/templates/py_config/init.py
 
-autocmd FileType python inoremap <buffer> ;init <C-\><C-O>:read ~/.vim/templates/py_config/init.py<CR>
-autocmd FileType python inoremap <buffer> ;bis <C-\><C-O>:read ~/.vim/templates/py_config/bis.py<CR>
-autocmd FileType python inoremap <buffer> ;sys <C-\><C-O>:read ~/.vim/templates/py_config/sys.py<CR>
+autocmd FileType python inoremap <buffer> ;init <C-\><C-O>:read ~/Programs/templates/py_config/init.py<CR>
+autocmd FileType python inoremap <buffer> ;bis <C-\><C-O>:read ~/Programs/templates/py_config/bis.py<CR>
+autocmd FileType python inoremap <buffer> ;sys <C-\><C-O>:read ~/Programs/templates/py_config/sys.py<CR>
 
 autocmd FileType python :imap <buffer> ;for <C-O>mzfor %%% in %%%(%%%):<CR>%%%<C-O>'z;;
 autocmd FileType python :imap <buffer> ;; <C-O>/%%%<CR><C-O>c3l
@@ -68,4 +68,4 @@ function! SaveAndExecutePython()
 endfunction
 
 "specific configuratin of splits for competitive programming
-nnoremap <leader>dtc :vsplit<bar> :wincmd l<bar> :vertical resize -38<bar> :e in.txt<bar> :split<bar> :wincmd j<bar> :e out.txt<bar> :wincmd h<CR>    
+nnoremap <leader>dtc :vsplit<bar> :wincmd l<bar> :vertical resize -38<bar> :e in.txt<bar> :split<bar> :wincmd j<bar> :e out.txt<bar> :split<bar> : wincmd j<bar> :e cerr.txt<bar> :wincmd h<CR>    

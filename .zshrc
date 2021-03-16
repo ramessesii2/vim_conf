@@ -205,7 +205,9 @@ alias lst="exa -T"
 alias lslm="ls -ltc | head -n"
 alias lsla="ls -ltu | head -n"
 
-# alias soact="source ~/django_proj/.venv/bin/activate"
+alias soact="source ~/django_proj/.env/bin/activate"
+alias jnb="soact && jupyter notebook"
+# source env/bin/activate
 alias py="python"
-alias g="g++"
+alias g="g++ -std=c++17"
 alias doc="xdg-open"

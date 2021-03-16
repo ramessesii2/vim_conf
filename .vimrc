@@ -1,15 +1,15 @@
 set wrap linebreak nolist
 set encoding=utf-8
 autocmd InsertLeave * write
-augroup remember_folds
-  autocmd!
-  autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent! loadview
-augroup END
+" augroup remember_folds
+"   autocmd!
+"   autocmd BufWinLeave * mkview
+"   autocmd BufWinEnter * silent! loadview
+" augroup END
 
 syntax on
 set textwidth=0
-"set colorcolumn=+1
+set colorcolumn=+1
 
 " Tab completion
 " will insert tab at beginning of line,
@@ -150,7 +150,7 @@ nnoremap <silent> <Leader>- :resize -5<CR>
 nnoremap <silent> <Leader>+ :resize +5<CR>
 nnoremap <silent> <Leader>= :resize<CR>
 
-nnoremap <leader>ov :exe ':silent !code-insiders %'<CR>:redraw!<CR>
+nnoremap <leader>ov :exe ':silent !code %'<CR>:redraw!<CR>
 nnoremap <leader>od :exe ':silent !xdg-open %'<CR>:redraw!<CR>
 "Clear highlights on hitting ESC twice
 nnoremap <silent> <Esc><Esc> :noh<CR> :call clearmatches()<CR>
@@ -216,7 +216,7 @@ autocmd FileType c
    \ nnoremap <Leader>rc :w!<cr>:make<cr>:!./out
 
 autocmd FileType cpp
-   \ nnoremap <Leader>rc :w <CR> :!g++ % && ./a.out <CR>
+   \ nnoremap <Leader>rc :w <CR> :!g++ -std=c++17 % && ./a.out <CR>
 
 "templated settings
 source ~/.vim/templates/py_config/py.vim
@@ -257,7 +257,13 @@ autocmd BufReadPost *
 \ endif
 
 "youcompleteme config
+
+"" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = exepath("clangd")
 let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/ycm_extra_conf.py'
 
 "vimspector config
 let g:vimspector_enable_mappings = 'HUMAN'

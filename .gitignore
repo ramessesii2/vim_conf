@@ -1,6 +1,7 @@
 *.un~
-.vim/plugged
+# .vim/plugged
 .vim/autoload
 .vim/pack
+.vim/vimundo
   
 

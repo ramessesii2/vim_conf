@@ -255,8 +255,8 @@ autocmd BufReadPost *
 \ if line("'\"") > 0 && line ("'\"") <= line("$") |
 \   exe "normal g'\"" |
 \ endif
-
-"youcompleteme config
+" to toggle youcompleteme
+let g:loaded_youcompleteme = 1
 
 "" Let clangd fully control code completion
 let g:ycm_clangd_uses_ycmd_caching = 0
@@ -266,12 +266,12 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/ycm_extra_conf.py'
 
 "vimspector config
-let g:vimspector_enable_mappings = 'HUMAN'
-nmap <leader>dd :call vimspector#Launch()<CR>
-nmap <leader>dx :VimspectorReset<CR>
-nmap <leader>de :VimspectorEval
-nmap <leader>dw :VimspectorWatch
-nmap <leader>do :VimspectorShowOutput
+" let g:vimspector_enable_mappings = 'HUMAN'
+" nmap <leader>dd :call vimspector#Launch()<CR>
+" nmap <leader>dx :VimspectorReset<CR>
+" nmap <leader>de :VimspectorEval
+" nmap <leader>dw :VimspectorWatch
+" nmap <leader>do :VimspectorShowOutput
 
 autocmd FileType cpp setlocal commentstring=//\ %s
 

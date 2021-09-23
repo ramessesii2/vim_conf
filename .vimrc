@@ -96,10 +96,8 @@ Plug 'dracula/vim', {'as': 'dracula'}
 Plug 'joshdick/onedark.vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'dense-analysis/ale'
-Plug 'altercation/vim-colors-solarized'
 Plug 'puremourning/vimspector'  
 Plug 'morhetz/gruvbox'
-Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'leafgarland/typescript-vim'
 Plug 'vim-utils/vim-man'
@@ -109,14 +107,17 @@ Plug 'mbbill/undotree'
 Plug 'vim-python/python-syntax'
 Plug 'sheerun/vim-polyglot'
 Plug 'jiangmiao/auto-pairs'
+Plug 'overcache/NeoSolarized'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 call plug#end()
 
 let g:python_highlight_all = 0
 set nocompatible
 syntax enable
-set background=dark
-colorscheme dracula
+set termguicolors
+set background=light
+colorscheme NeoSolarized
 "colorscheme iceberg 
 "colorscheme solarized
 "colorscheme gruvbox 
@@ -136,6 +137,7 @@ let g:ctrlp_use_caching = 0
 
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
+
 nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>l :wincmd l<CR>
 
@@ -256,7 +258,7 @@ autocmd BufReadPost *
 \   exe "normal g'\"" |
 \ endif
 " to toggle youcompleteme
-let g:loaded_youcompleteme = 1
+" let g:loaded_youcompleteme = 1
 
 "" Let clangd fully control code completion
 let g:ycm_clangd_uses_ycmd_caching = 0
@@ -275,6 +277,12 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/ycm_extra_conf.py'
 
 autocmd FileType cpp setlocal commentstring=//\ %s
 
+" //indentation method
+augroup vimrc
+  au BufReadPre * setlocal foldmethod=indent
+  au BufWinEnter * if &fdm == 'indent' | setlocal foldmethod=manual | endif
+augroup END
+
 " "
 " inoremap { {<CR>}<Esc>ko
 " inoremap (  ()<Left>
@@ -282,3 +290,5 @@ autocmd FileType cpp setlocal commentstring=//\ %s
 " inoremap "  ""<Left>
 " inoremap <expr> )  strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
 " inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "\'" ? "\<Right>" : "\'\'\<Left>"
+"support for markdown files
+autocmd BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
